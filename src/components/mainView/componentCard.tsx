@@ -3,18 +3,20 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import reducerHook from "./hookReducer";
 import { useReducer } from "react";
+import getUrl from "@/services/uploadImage";
 
 enum FileTypes {
   Jpeg = "image/jpeg",
   Png = "image/png",
 }
+
 export const MainCard = () => {
   const [data, dispatch] = useReducer(reducerHook, {
     dropped: false,
     file: null,
     isDragging: false,
   });
-
+  // console.log(location.origin);
   // onDragEnter sets inDropZone to true
   const handleDragEnter = (e: React.DragEvent<HTMLElement>) => {
     e.preventDefault();
@@ -52,7 +54,7 @@ export const MainCard = () => {
   };
 
   // onDrop sets inDropZone to false and adds files to fileList
-  const handleDrop = (e: React.DragEvent<HTMLElement>) => {
+  const handleDrop = async (e: React.DragEvent<HTMLElement>) => {
     e.preventDefault();
     e.stopPropagation();
     console.log(e.dataTransfer.files);
@@ -79,6 +81,8 @@ export const MainCard = () => {
       newFormData.append("file", fileUploded[0]);
       console.log(newFormData);
       // dispatch action to add droped file or files to fileList
+      const dat = await getUrl(newFormData);
+      console.log(dat);
       dispatch({
         type: "SET_IN_DROP_ZONE",
         isDragging: false,
@@ -89,12 +93,18 @@ export const MainCard = () => {
       // reset inDropZone to false
       // dispatch({ type: "SET_IN_DROP_ZONE", inDropZone: false });
     }
+    dispatch({
+      type: "SET_IN_DROP_ZONE",
+      isDragging: false,
+      file: null,
+      dropped: false,
+    });
   };
   return (
     <section className={styles.mainCard}>
       <div className={styles.container}>
         <div className={styles.cardHeader}>
-          <h1>Upload Image</h1>
+          <h1>Upload your image</h1>
           <p>File should be Jpeg,Png,..</p>
         </div>
         <form className={styles.form} action="" method="post">
