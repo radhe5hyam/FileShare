@@ -78,3 +78,18 @@
   background-color: #ffffff;
   transform: scale(1.05);
 }
+
+@media (max-width: 640px) {
+  .container {
+    padding: 36px 16px;
+  }
+
+  .mainCard {
+    width: 350px;
+    height: 450px;
+  }
+  .area {
+    width: 300px;
+    height: 255px;
+  }
+}

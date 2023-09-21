@@ -2,14 +2,14 @@ import { Reducer } from "react";
 
 type IssuesInitialState = {
   dropped: boolean;
-  file: File | null;
+  file: { body: URLSearchParams | null; error: string | null } | null;
   isDragging: boolean;
   // isUploading: boolean;
 };
 type IssuesAction = {
   type: string;
   dropped: boolean;
-  file: File | null;
+  file: { body: URLSearchParams | null; error: string | null } | null;
   isDragging: boolean;
   // isUploading: boolean;
 };

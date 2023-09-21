@@ -1,0 +1,63 @@
+/* Loading component */
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.containerCard {
+  width: 400.36px;
+  height: 143.57px;
+  border-radius: 12px;
+  margin: auto;
+  box-shadow: 0px 4px 12px 0px #0000001a;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.containerCard p {
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 27px;
+}
+
+.containerLoader {
+  background-color: #f2f2f2;
+  width: 340.7px;
+  height: 6px;
+  border-radius: 8px;
+  overflow-x: hidden;
+}
+
+.loader {
+  width: 100.9px;
+  height: 6px;
+  border-radius: 8px;
+  background-color: #2f80ed;
+  animation: loading 2s linear infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-50px);
+  }
+  50% {
+    transform: translateX(150px);
+  }
+  100% {
+    transform: translateX(370px);
+  }
+}
+
+@media (max-width: 640px) {
+  .containerLoader {
+    width: 300px;
+  }
+  .containerCard {
+    width: 340px;
+  }
+}
